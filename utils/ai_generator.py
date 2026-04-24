@@ -31,12 +31,9 @@ def generate_questions(class_name, subject, level, number, content, api_key):
             
             # Try models in order of preference
             preference = [
-                'models/gemini-3-flash-preview', 
-                'models/gemini-2.5-flash', 
-                'models/gemini-2.0-flash', 
-                'models/gemini-1.5-flash', 
-                'models/gemini-pro'
-            ]
+          'models/gemini-1.5-flash',
+          'models/gemini-1.5-pro'
+      ]
             # Add models that were found but not in preference list
             for m_name in available_models:
                 if m_name not in preference:
@@ -83,7 +80,7 @@ def generate_questions(class_name, subject, level, number, content, api_key):
             # Last ditch effort: try gemini-pro directly without testing
             try:
                 print("Last ditch effort: Trying gemini-pro directly...")
-                model = genai.GenerativeModel('gemini-pro')
+                model = genai.GenerativeModel('models/gemini-1.5-flash')
                 model_name = 'gemini-pro'
             except:
                 return {"error": "Could not find a supported Gemini model for your API key. Please check your API key permissions at https://aistudio.google.com/"}
